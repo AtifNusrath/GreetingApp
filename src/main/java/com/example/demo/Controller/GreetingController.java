@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Service.IGreetingService;
-import com.example.demo.dto.Greeting;
-import com.example.demo.dto.User;
+import com.example.demo.model.Greeting;
+import com.example.demo.dto.UserDto;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -38,7 +38,7 @@ public class GreetingController {
     }
     
     @PostMapping("/greeting")
-    public String greetingMessage(@RequestBody User user) {
-        return "Hello "+user.firstName+" "+user.lastName;
+    public String greetingMessage(@RequestBody UserDto user) {
+        return greetingService.greetingMessageByName(user);
     }
 }
