@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.Optional;
 import com.example.demo.Service.IGreetingService;
 import com.example.demo.model.Greeting;
 import com.example.demo.dto.UserDto;
+import com.example.demo.model.User;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -40,5 +41,10 @@ public class GreetingController {
     @PostMapping("/greeting")
     public String greetingMessage(@RequestBody UserDto user) {
         return greetingService.greetingMessageByName(user);
+    }
+    
+    @GetMapping("/find")
+    public Optional<User> findGreetById(@RequestParam long id) {
+        return greetingService.getById(id);
     }
 }

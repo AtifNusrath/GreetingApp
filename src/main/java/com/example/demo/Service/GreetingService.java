@@ -8,6 +8,7 @@ import com.example.demo.model.Greeting;
 import org.modelmapper.ModelMapper;
 import com.example.demo.dto.UserDto;
 import com.example.demo.model.User;
+import java.util.Optional;
 
 @Service
 public class GreetingService implements IGreetingService{
@@ -29,5 +30,11 @@ public class GreetingService implements IGreetingService{
         modelMapper.map(userDto, user);
         iGreetingRepository.save(user);
         return ("Hello " + user.getFirstName() + " " + user.getLastName());
+    }
+	
+	@Override
+    public Optional<User> getById(long id) {
+        Optional<User> greetById = iGreetingRepository.findById(id);
+        return greetById;
     }
 }
